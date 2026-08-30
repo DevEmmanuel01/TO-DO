@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const form = document.getElementById('todo-form');
     const input = document.getElementById('todo-input');
+    const addButton = document.getElementById('add-button');
+    const errorMsg = document.getElementById('error-message');
+    const filterBtns = document.querySelectorAll('.filter-btn');
     const todoList = document.getElementById('todo-list');
     const totalTasksEl = document.getElementById('total-tasks');
     const completedTasksEl = document.getElementById('completed-tasks');
@@ -15,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // State
     let todos = JSON.parse(localStorage.getItem('todos')) || [];
+    let currentFilter = 'all';
 
     // Initialize
     renderTodos();
@@ -24,11 +28,31 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', addTodo);
     clearCompletedBtn.addEventListener('click', clearCompleted);
 
+    input.addEventListener('input', () => {
+        const text = input.value.trim();
+        addButton.disabled = text.length === 0;
+        if (text.length > 0) {
+            errorMsg.textContent = '';
+        }
+    });
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.getAttribute('data-filter');
+            renderTodos();
+        });
+    });
+
     function addTodo(e) {
         e.preventDefault();
         
         const text = input.value.trim();
-        if (!text) return;
+        if (!text) {
+            errorMsg.textContent = 'Please enter a task.';
+            return;
+        }
 
         const newTodo = {
             id: Date.now().toString(),
@@ -40,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveTodos();
         
         input.value = '';
+        addButton.disabled = true;
         renderTodos();
     }
 
@@ -89,17 +114,35 @@ document.addEventListener('DOMContentLoaded', () => {
         totalTasksEl.textContent = total;
         completedTasksEl.textContent = completed;
         pendingTasksEl.textContent = pending;
+
+        // Only show Clear Completed if tasks have been added
+        clearCompletedBtn.style.display = total === 0 ? 'none' : 'block';
     }
 
     function renderTodos() {
         todoList.innerHTML = '';
 
-        if (todos.length === 0) {
-            todoList.innerHTML = '<li class="empty-state">No tasks yet. Add one above!</li>';
+        let filteredTodos = todos;
+        if (currentFilter === 'active') {
+            filteredTodos = todos.filter(t => !t.completed);
+        } else if (currentFilter === 'completed') {
+            filteredTodos = todos.filter(t => t.completed);
+        }
+
+        if (filteredTodos.length === 0) {
+            let msg = 'No tasks yet. Add one above!';
+            if (currentFilter === 'active') msg = 'No active tasks.';
+            if (currentFilter === 'completed') msg = 'No completed tasks yet.';
+            
+            const iconSvg = `<svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>`;
+            
+            todoList.innerHTML = `<li class="empty-state">${iconSvg}<p>${msg}</p></li>`;
             return;
         }
 
-        todos.forEach(todo => {
+        filteredTodos.forEach(todo => {
             const li = document.createElement('li');
             li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
             li.setAttribute('data-id', todo.id);

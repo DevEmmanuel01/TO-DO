@@ -27,15 +27,35 @@ body {
     gap: 1.5rem;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
 .header {
     margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.logo-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #3b82f6;
 }
 
 .header h1 {
     font-size: 1.75rem;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 0.25rem;
 }
 
 .subtitle {
@@ -80,6 +100,12 @@ body {
 
 .todo-form {
     display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.input-wrapper {
+    display: flex;
     gap: 0.5rem;
 }
 
@@ -99,9 +125,10 @@ body {
     color: #9ca3af;
 }
 
-.todo-input:focus {
+.todo-input:focus, .todo-input:focus-visible {
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    outline: none;
 }
 
 .add-button {
@@ -117,12 +144,59 @@ body {
     font-family: inherit;
 }
 
-.add-button:hover {
+.add-button:hover:not(:disabled) {
     background-color: #2563eb;
 }
 
-.add-button:active {
+.add-button:active:not(:disabled) {
     transform: scale(0.97);
+}
+
+.add-button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.add-button:focus-visible, .delete-button:focus-visible, .clear-button:focus-visible, .filter-btn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.75rem;
+    min-height: 1rem;
+    margin-left: 0.25rem;
+}
+
+.filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid #e5e7eb;
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.filter-btn.active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
 }
 
 .todo-list-container {
@@ -173,6 +247,11 @@ body {
     flex-shrink: 0;
     -webkit-appearance: none;
     appearance: none;
+}
+
+.todo-checkbox:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
 }
 
 .todo-checkbox:checked {
@@ -252,9 +331,24 @@ body {
 
 .empty-state {
     text-align: center;
-    padding: 2rem 0;
+    padding: 2.5rem 0;
     color: #9ca3af;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.empty-icon {
+    width: 3rem;
+    height: 3rem;
+    color: #d1d5db;
+    margin-bottom: 0.25rem;
+}
+
+.empty-state p {
     font-size: 0.9375rem;
+    margin: 0;
 }
 
 /* Micro-animations for list items */
@@ -271,4 +365,36 @@ body {
 
 .todo-item {
     animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 375px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .dashboard-container {
+        padding: 1.25rem;
+        border-radius: 12px;
+        gap: 1rem;
+    }
+    
+    .stats-card {
+        padding: 0.75rem;
+    }
+    
+    .stat-value {
+        font-size: 1.125rem;
+    }
+    
+    .todo-input {
+        padding: 0.625rem 0.75rem;
+    }
+    
+    .add-button {
+        padding: 0 1rem;
+    }
+    
+    .todo-item {
+        padding: 0.75rem;
+    }
 }
