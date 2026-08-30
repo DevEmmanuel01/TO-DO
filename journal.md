@@ -38,8 +38,8 @@ Problems found in v1.0:
 
 **Prompt used:** Structured with role, context, task, constraints, output format. Told the agent to show a plan first and wait for approval.
 
-**Challenges:** [FILL IN after running the prompt – what did the agent get wrong on the first pass? What did you have to push back on?]
+**Challenges:** The agent's first pass got the layout technically right but visually wrong: it crammed elements together with tight spacing, and some styling did not match the calm, spaced-out direction in AGENTS.md. I pushed back and had it increase the spacing between the stats card and the input form, enlarge the padding and font size on the filter buttons so they work as touch targets, and add a proper icon to the empty state instead of text alone. I also had it hide the Clear Completed button when the list is empty, since a button that does nothing should not be on screen. Lesson: the agent gets you 80% there, the design eye is still my job.
 
-**Result:** [FILL IN – e.g. v1.1 live on Vercel, keyboard-only test passed, looks right at 375px.]
+**Result:** v1.1 is live on Vercel. Keyboard-only test passed: everything reachable with Tab, tasks add with Enter, toggle with Space. Layout holds at 375px and works comfortably on my phone. All changes went in under one documented commit covering the full v1.1 refinement list, plus the three follow-up fixes above.
 
 **Commits this session:** PRD, context file, logo and brand, button states, empty state, input validation, filters, accessibility, responsive layout, README, journal.

@@ -4,7 +4,7 @@ A single-page to-do app that gets out of your way. Type a task, tick it, come ba
 
 **Live:** [https://to-do-lake-chi-25.vercel.app/]
 
-![My Tasks screenshot](image.png)
+![My Tasks screenshot](screenshot.png)
 
 ---
 
