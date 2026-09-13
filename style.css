@@ -226,6 +226,18 @@ main {
     border-color: #d1d5db;
 }
 
+.todo-view {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 0.25rem;
+}
+
 .todo-content {
     display: flex;
     align-items: center;
@@ -283,10 +295,9 @@ main {
     text-decoration: line-through;
 }
 
-.delete-button {
+.edit-button, .delete-button {
     background: transparent;
     border: none;
-    color: #ef4444;
     cursor: pointer;
     padding: 0.25rem;
     border-radius: 4px;
@@ -297,14 +308,55 @@ main {
     justify-content: center;
 }
 
+.edit-button {
+    color: #6b7280;
+}
+
+.delete-button {
+    color: #ef4444;
+}
+
+.edit-button:hover {
+    opacity: 1;
+    background-color: rgba(107, 114, 128, 0.1);
+}
+
 .delete-button:hover {
     opacity: 1;
     background-color: rgba(239, 68, 68, 0.1);
 }
 
-.delete-button svg {
+.edit-button svg, .delete-button svg {
     width: 1.125rem;
     height: 1.125rem;
+}
+
+/* Edit Mode Styles */
+.edit-input {
+    display: none;
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 0.9375rem;
+    border: 1px solid #3b82f6;
+    border-radius: 6px;
+    outline: none;
+    font-family: inherit;
+    color: #1f2937;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.todo-item.editing .todo-view {
+    display: none;
+}
+
+.todo-item.editing .edit-input {
+    display: block;
+    width: 100%;
+}
+
+.todo-item.editing {
+    padding: 0.5rem;
 }
 
 .footer-actions {
