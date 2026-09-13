@@ -1,6 +1,6 @@
 # Product Requirement Document: My Tasks
 
-**Version:** 1.1 (refinement of the 18 Aug 2026 build)
+**Version:** 1.2 (adds task editing to the 30 Aug v1.1 build)
 **Owner:** Gbolahan Adekola
 **Status:** In progress
 
@@ -41,6 +41,22 @@ Everything in this document serves that one goal. Anything that slows it down is
 | Accessibility | Partial | Visible focus rings, labelled controls, live region for counts, works with keyboard only |
 | Responsiveness | Desktop-first | Comfortable on a phone screen |
 
+## 5b. What v1.2 adds
+
+One feature: **inline task editing.**
+
+- Each task gets an Edit control (pencil icon, aria-label "Edit task").
+- Activating it turns the task text into a pre-filled input, focused, cursor at the end.
+- Enter or clicking away saves. Escape cancels and restores the original text.
+- Edits pass the same validation as adding: empty or whitespace-only edits are rejected and the original text is restored.
+- Completed tasks can also be edited.
+- Edited text persists to localStorage using the existing storage pattern.
+- The whole edit flow must work keyboard-only, with visible focus states.
+
+Why this feature: fixing a typo currently means deleting and retyping the task, which breaks the "under 5 seconds" goal. Editing part of an existing record is also the front-end equivalent of a PATCH request — updating one field, not replacing the whole thing.
+
+**Out of scope for v1.2:** due dates, priorities, drag-and-drop reordering, dark mode, multiple lists, any backend. (Unchanged from Section 6.)
+
 ## 6. Out of scope (deliberately)
 
 - Accounts or login
@@ -58,6 +74,7 @@ These would each be a good feature. None of them serve the core user goal for th
 - No console errors.
 - Data persists across refresh and browser restart.
 - Deploys on Vercel with no build step.
+- A task can be edited and saved without using a mouse.
 
 ## 8. Tech stack decision
 
