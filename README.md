@@ -67,6 +67,18 @@ I followed the product development roadmap from class rather than one big prompt
 
 Day-by-day notes are in [`journal.md`](./journal.md).
 
+## v1.2 — Inline task editing (6 Sept 2026)
+
+**What changed:** Tasks can now be edited in place. Click the pencil (or reach it by keyboard), the text becomes an input, Enter or clicking away saves, Escape cancels. Empty or whitespace-only edits are rejected and the original text is restored.
+
+**Why:** Fixing a typo used to mean deleting and retyping the whole task, which broke the app's core goal — write a task down in under 5 seconds. Editing was the smallest feature that removed that friction.
+
+**Decisions:**
+- Edits reuse the Add flow's validation rather than duplicating the rules. One source of truth for what a valid task is.
+- Editing part of an existing record instead of deleting and recreating it — the front-end equivalent of a PATCH request vs a DELETE + POST (a concept from Week 4 of the bootcamp).
+- The out-of-scope list held: no due dates, no reordering, no dark mode shipped, even though each would have been easy to bolt on.
+
+**Process:** requirement added to PRD.md first → engineered prompt referencing PRD and AGENTS.md → agent proposed a plan → approved → implemented → keyboard-only self-check → shipped.
 ---
 
 Built by [Gbolahan Adekola](https://x.com/DEVDESIGNAGE) · #BuildInPublic

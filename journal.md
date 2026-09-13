@@ -43,3 +43,11 @@ Problems found in v1.0:
 **Result:** v1.1 is live on Vercel. Keyboard-only test passed: everything reachable with Tab, tasks add with Enter, toggle with Space. Layout holds at 375px and works comfortably on my phone. All changes went in under one documented commit covering the full v1.1 refinement list, plus the three follow-up fixes above.
 
 **Commits this session:** PRD, context file, logo and brand, button states, empty state, input validation, filters, accessibility, responsive layout, README, journal.
+
+## 6 Sept 2026 — v1.2: inline editing
+
+**Worked on:** shipped inline task editing (edit button → input → Enter/blur saves, Escape cancels, same validation as Add).
+
+**Chose:** editing over dark mode or due dates. It directly serves the core goal (fast task capture, fast correction) and maps to this week's class content — updating part of a record is a PATCH, not a delete-and-recreate.
+
+**Parked:** due dates, drag-to-reorder, dark mode. Still out of scope — none of them serve the "under 5 seconds" goal yet.
