@@ -84,7 +84,7 @@ Day-by-day notes are in [`journal.md`](./journal.md).
 
 **What changed:** Ran the hostile-audit workflow from class on this repo's AGENTS.md — auditing it against the PRD for inventions, omissions, contradictions, ambiguity, scope doors and missing definitions — then rebuilt the file from the findings.
 
-**What the audit caught:** Open scope doors (nothing explicitly forbade frameworks or new features), no escape hatch for when the PRD is silent, no protection for the localStorage key shape, and vague accessibility rules that weren't checkable.
+**What the audit caught:** 27 findings — invented constraints not in the PRD, a rule that banned CSS variables while demanding a colour system, an unprotected localStorage schema, open scope doors, and no escape hatch.
 
 **What the hardened file now does:**
 - Closes every scope door: forbidden features are named explicitly, not implied.
