@@ -80,5 +80,19 @@ Day-by-day notes are in [`journal.md`](./journal.md).
 
 **Process:** requirement added to PRD.md first → engineered prompt referencing PRD and AGENTS.md → agent proposed a plan → approved → implemented → keyboard-only self-check → shipped.
 ---
+## Week 5 — Context engineering pass (context file hardened)
+
+**What changed:** Ran the hostile-audit workflow from class on this repo's AGENTS.md — auditing it against the PRD for inventions, omissions, contradictions, ambiguity, scope doors and missing definitions — then rebuilt the file from the findings.
+
+**What the audit caught:** Open scope doors (nothing explicitly forbade frameworks or new features), no escape hatch for when the PRD is silent, no protection for the localStorage key shape, and vague accessibility rules that weren't checkable.
+
+**What the hardened file now does:**
+- Closes every scope door: forbidden features are named explicitly, not implied.
+- Protects data: the `tasks` localStorage key cannot be renamed or broken; any shape change must migrate on read.
+- Adds an escape hatch: when the PRD is silent, the agent stops and asks — no guessing, and approved decisions get logged in journal.md.
+- Makes every rule checkable: keyboard flows, aria-labels, and focus states are specified precisely enough to verify, not vibes.
+- Requires a plan before code and a zero-console-error check after every change.
+
+**Decision:** no `rules/` folder for this app. The class rule is to only create rules files for complex, delicate parts — My Tasks is three files with no backend, so a single hardened context file is the right size. Adding a rules setup here would be context bloat, the exact thing the workflow exists to prevent.
 
 Built by [Gbolahan Adekola](https://x.com/DEVDESIGNAGE) · #BuildInPublic

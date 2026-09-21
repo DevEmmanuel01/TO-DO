@@ -51,3 +51,11 @@ Problems found in v1.0:
 **Chose:** editing over dark mode or due dates. It directly serves the core goal (fast task capture, fast correction) and maps to this week's class content — updating part of a record is a PATCH, not a delete-and-recreate.
 
 **Parked:** due dates, drag-to-reorder, dark mode. Still out of scope — none of them serve the "under 5 seconds" goal yet.
+
+## Mon 21 Sep — Week 5: hostile audit on AGENTS.md
+
+**Worked on:** audited AGENTS.md against PRD.md using the hostile-review workflow (failure list: invention, omission, contradiction, uncheckable, ambiguity, scope doors, database doors, missing definitions), then applied the fixes.
+
+**Chose:** hardening the single context file instead of building a `.agent/rules/` structure. Rules files are for complex, delicate parts — a 3-file vanilla app doesn't earn them. Right-sizing context is the lesson, not maximizing it.
+
+**Parked:** rules files and skills — they become relevant if this app ever grows a backend, auth, or payments (all currently out of scope by PRD).
