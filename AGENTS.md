@@ -10,7 +10,7 @@ Files: `index.html` (structure), `style.css` (styling), `script.js` (logic), `PR
 
 ## Rules
 
-1. Do not add frameworks, libraries, Tailwind, a bundler, or a build step. Use plain CSS with literal values; do not add CSS custom properties (`--var`).
+1. Do not add frameworks, libraries, Tailwind, a bundler, or a build step. Use plain CSS with literal values; CSS custom properties are permitted only for colour tokens, defined once on :root, named by M3 role names; no other custom properties (`--var`).
 2. Do not add a backend, API calls, accounts, due dates, priorities, tags, projects, drag-and-drop reordering, dark mode, or multiple lists.
 3. Keep logic in `script.js`, structure in `index.html`, styling in `style.css`. Do not add runtime JS files or a module system.
 4. Every interactive element must work with the keyboard alone: Tab to focus, Enter or Space to activate buttons, Escape to cancel an in-progress edit, Enter to save an edit.
