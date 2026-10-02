@@ -57,6 +57,17 @@ Why this feature: fixing a typo currently means deleting and retyping the task, 
 
 **Out of scope for v1.2:** due dates, priorities, drag-and-drop reordering, dark mode, multiple lists, any backend. (Unchanged from Section 6.)
 
+## 5c. What v1.3 adds
+
+One change, no new features: **colour tokens.**
+
+- All colours in style.css move from scattered literal values into CSS custom properties on `:root`, named by role (Material Design 3 naming): `--primary`, `--on-primary`, `--primary-container`, `--on-primary-container`, `--surface`, `--on-surface`, `--outline`, `--error`, `--on-error`.
+- Values come from a right-sized palette: the existing accent colour stays exactly as it is (the Primary 40 override rule — the brand colour must not drift), plus the existing neutral scale (max 5 steps, unchanged), plus one error pair.
+- No visual redesign: the rendered app must look identical before and after. This is refactoring colour plumbing, not changing the paint.
+- **Decision note:** the full M3 system (5 key colours × 14 tones = 70 colour slots) is deliberately not adopted. A 3-file app with one accent does not earn 70 tokens — that would be the colour-system version of context bloat.
+
+**Amendment to AGENTS.md rule 1:** CSS custom properties are now permitted for colour tokens only, defined once on `:root`, named by role.
+
 ## 6. Out of scope (deliberately)
 
 - Accounts or login
