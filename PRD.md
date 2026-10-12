@@ -68,6 +68,12 @@ One change, no new features: **colour tokens.**
 
 **Amendment to AGENTS.md rule 1:** CSS custom properties are now permitted for colour tokens only, defined once on `:root`, named by role.
 
+## 5d. What v1.4 adds
+Head + accessibility pass, no new features:
+- A real <title> with the value proposition (not just "My Tasks"), meta description, favicon (the blue check mark), and Open Graph tags (og:title, og:description, og:image with an ABSOLUTE url, twitter card) so shared links preview properly.
+- An accessibility audit, with serious issues fixed.
+Out of scope: everything in section 6, unchanged.
+
 ## 6. Out of scope (deliberately)
 
 - Accounts or login

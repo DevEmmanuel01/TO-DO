@@ -38,8 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
+            filterBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
             currentFilter = btn.getAttribute('data-filter');
             renderTodos();
         });
@@ -134,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentFilter === 'active') msg = 'No active tasks.';
             if (currentFilter === 'completed') msg = 'No completed tasks yet.';
             
-            const iconSvg = `<svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            const iconSvg = `<svg class="empty-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
             </svg>`;
             
@@ -166,11 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         </button>
                     </div>
                 </div>
-                <input type="text" class="edit-input" aria-hidden="true" tabindex="-1">
+                <input type="text" class="edit-input" aria-label="Edit task" aria-hidden="true" tabindex="-1">
             `;
 
             const contentDiv = li.querySelector('.todo-content');
             const checkbox = li.querySelector('.todo-checkbox');
+            checkbox.setAttribute('aria-label', `${todo.completed ? 'Mark incomplete: ' : 'Mark complete: '}${todo.text}`);
             const deleteBtn = li.querySelector('.delete-button');
             const editBtn = li.querySelector('.edit-button');
             const editInput = li.querySelector('.edit-input');

@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do Dashboard</title>
-    <meta name="description" content="A simple and elegant to-do dashboard">
+    <title>My Tasks — A minimalist task list that survives a refresh</title>
+    <meta name="description" content="A clean, distraction-free to-do app with zero setup. Add tasks in under five seconds and keep them across refreshes.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://to-do-lake-chi-25.vercel.app/">
+    <meta property="og:title" content="My Tasks — A minimalist task list that survives a refresh">
+    <meta property="og:description" content="A clean, distraction-free to-do app with zero setup. Add tasks in under five seconds and keep them across refreshes.">
+    <meta property="og:image" content="https://to-do-lake-chi-25.vercel.app/screenshot.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="My Tasks — A minimalist task list that survives a refresh">
+    <meta name="twitter:description" content="A clean, distraction-free to-do app with zero setup. Add tasks in under five seconds and keep them across refreshes.">
+    <meta name="twitter:image" content="https://to-do-lake-chi-25.vercel.app/screenshot.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,16 +50,16 @@
 
             <form id="todo-form" class="todo-form">
                 <div class="input-wrapper">
-                    <input type="text" id="todo-input" class="todo-input" placeholder="What needs to be done?" autocomplete="off">
+                    <input type="text" id="todo-input" class="todo-input" placeholder="What needs to be done?" autocomplete="off" aria-label="New task" aria-describedby="error-message">
                     <button type="submit" class="add-button" id="add-button" disabled>Add</button>
                 </div>
                 <div id="error-message" class="error-message" aria-live="polite"></div>
             </form>
 
             <nav class="filters" aria-label="Task filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="active">Active</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-filter="active" aria-pressed="false">Active</button>
+                <button class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
             </nav>
 
             <div class="todo-list-container">
